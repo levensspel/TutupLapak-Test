@@ -1,6 +1,17 @@
 # FitByte Test Cases!
 ## ProjectSprint Batch 3 Project 2
 
+### Status
+- ✅ Register 
+- ✅ Login 
+- ✅ Get Profile 
+- 🏗️ File Upload
+- 🏗️ Patch Profile 
+- 🏗️ Post Activity 
+- 🏗️ Get Activity 
+- 🏗️ Patch Activity 
+- 🏗️ Delete Activity 
+
 ### Prerequisites
 - [ k6 ](https://k6.io/docs/get-started/installation/)
 
