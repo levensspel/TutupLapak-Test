@@ -5,12 +5,12 @@
 - ✅ Register 
 - ✅ Login 
 - ✅ Get Profile 
-- 🏗️ File Upload
-- 🏗️ Patch Profile 
-- 🏗️ Post Activity 
-- 🏗️ Get Activity 
-- 🏗️ Patch Activity 
-- 🏗️ Delete Activity 
+- ✅ File Upload
+- ✅ Patch Profile 
+- ✅ Post Activity 
+- ✅ Get Activity 
+- ✅ Patch Activity 
+- ✅ Delete Activity 
 
 ### Prerequisites
 - [ k6 ](https://k6.io/docs/get-started/installation/)
