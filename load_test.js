@@ -1,4 +1,10 @@
+import { fail } from 'k6';
 import { Client } from 'k6/experimental/redis';
+import { RegisterTest } from './src/tests/registerTest';
+import { LoginTest } from './src/tests/loginTest';
+import { UploadFileTest } from './src/tests/fileTest';
+import { GetProfileTest, PatchProfileTest } from './src/tests/profileTest';
+import { PostActivityTest } from './src/tests/activityTest';
 export const options = {
   scenarios: {
     ramping_load: {
@@ -36,6 +42,9 @@ export default async function() {
     debug: __ENV.DEBUG ? true : false,
     runNegativeCase: true,
     verifyChanges: true
+  }
+  const tags = {
+    env: "local"
   }
 }
 

@@ -36,6 +36,15 @@ export default [
       // Prevent ES modules syntax since k6 uses its own module system
       "no-import-assign": "error",
 
+      "no-restricted-imports": [
+        "error",
+        {
+          "patterns": [{
+            "group": ["src/*"],
+            "message": "Please use relative imports instead of importing from 'src/'"
+          }]
+        }
+      ],
       // Prevent newer array methods
       "no-restricted-properties": [
         "error",

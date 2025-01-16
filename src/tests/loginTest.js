@@ -1,9 +1,8 @@
-import { isUser } from "src/caster/caster.js";
+import { isUser } from "../caster/caster.js";
 import { isEqual, isExists } from "../helper/assertion.js";
 import {
   combine,
   generateRandomEmail,
-  generateRandomPassword,
   generateTestObjects,
 } from "../helper/generator.js";
 import { testPostJsonAssert } from "../helper/request.js";
@@ -83,8 +82,8 @@ export function LoginTest(user, config, tags) {
       if (jsonResult && isUser(jsonResult)) {
         return combine(jsonResult, positivePayload)
       }
-    } catch (parseError) {
-      console.log("failed parse:", parseError)
+    } catch (e) {
+      console.log(featureName + " | failed to parse json", e)
     }
   }
 }

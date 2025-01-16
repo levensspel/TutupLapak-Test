@@ -302,7 +302,7 @@ function flatMap(arr, callback) {
  * @param {string} query - The query to specify the path of the values to retrieve.
  * @returns {Array<import("k6").JSONValue>} - An array of values retrieved from the object based on the query.
  */
-function traverseObject(obj, query) {
+export function traverseObject(obj, query) {
   if (Array.isArray(obj)) {
     if (!query.startsWith("[]")) {
       return [];

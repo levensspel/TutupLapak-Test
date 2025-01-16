@@ -1,4 +1,4 @@
-import { isUser } from "src/caster/caster.js";
+import { isUser } from "../caster/caster.js";
 import { isEqual, isExists } from "../helper/assertion.js";
 import {
   combine,
@@ -77,8 +77,8 @@ export function RegisterTest(config, tags) {
       if (jsonResult && isUser(jsonResult)) {
         return combine(jsonResult, positivePayload)
       }
-    } catch (parseError) {
-      console.log("failed parse:", parseError)
+    } catch (e) {
+      console.log(featureName + " | failed to parse json", e)
     }
   }
 }
