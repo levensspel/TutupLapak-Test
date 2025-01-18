@@ -190,7 +190,7 @@ export function PostActivityTest(user, config, tags) {
   const route = config.baseUrl + "/v1/activity";
   const assertHandler = testPostJsonAssert;
 
-  const duration = generateRandomNumber(0, 100)
+  const duration = generateRandomNumber(2, 100)
   const choosenActivity = activities[generateRandomNumber(0, activities.length - 1)]
   const calorieBurned = duration * activitiesCalories[choosenActivity]
   const positivePayload = {
@@ -289,7 +289,7 @@ export function PatchActivityTest(user, activity, config, tags) {
   const route = routeWithoutId + `/${activity.activityId}`;
   const assertHandler = testPatchJsonAssert;
 
-  const duration = generateRandomNumber(0, 100)
+  const duration = generateRandomNumber(1, 100)
   const choosenActivity = activities[generateRandomNumber(0, activities.length - 1)]
   const calorieBurned = duration * activitiesCalories[choosenActivity]
   const positivePayload = {
