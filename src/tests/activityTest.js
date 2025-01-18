@@ -188,7 +188,7 @@ export function PostActivityTest(user, config, tags) {
   };
   const activities = Object.keys(activitiesCalories)
   const duration = generateRandomNumber(0, 100)
-  const choosenActivity = activities[generateRandomNumber(0, activities.length)]
+  const choosenActivity = activities[generateRandomNumber(0, activities.length - 1)]
   const calorieBurned = duration * activitiesCalories[choosenActivity]
   const positivePayload = {
     activityType: choosenActivity,
@@ -301,7 +301,7 @@ export function PatchActivityTest(user, activity, config, tags) {
   };
   const activities = Object.keys(activitiesCalories)
   const duration = generateRandomNumber(0, 100)
-  const choosenActivity = activities[generateRandomNumber(0, activities.length)]
+  const choosenActivity = activities[generateRandomNumber(0, activities.length - 1)]
   const calorieBurned = duration * activitiesCalories[choosenActivity]
   const positivePayload = {
     activityType: choosenActivity,

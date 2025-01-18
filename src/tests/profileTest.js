@@ -83,9 +83,9 @@ export function PatchProfileTest(user, config, tags) {
   const heightUnitEnum = ["CM", "INCH"]
 
   const positivePayload = {
-    preference: preferenceEnum[generateRandomNumber(0, preferenceEnum.length)],
-    heightUnit: heightUnitEnum[generateRandomNumber(0, heightUnitEnum.length)],
-    weightUnit: weightUnitEnum[generateRandomNumber(0, weightUnitEnum.length)],
+    preference: preferenceEnum[generateRandomNumber(0, preferenceEnum.length - 1)],
+    heightUnit: heightUnitEnum[generateRandomNumber(0, heightUnitEnum.length - 1)],
+    weightUnit: weightUnitEnum[generateRandomNumber(0, weightUnitEnum.length - 1)],
     weight: generateRandomNumber(10, 1000),
     height: generateRandomNumber(3, 250),
     name: generateRandomName(),

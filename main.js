@@ -66,7 +66,7 @@ export default function() {
     activities.push(department)
   }
   GetActivityTest(user, config, tags)
-  let pickedDepartmentIndex = generateRandomNumber(0, activities.length)
+  let pickedDepartmentIndex = generateRandomNumber(0, activities.length - 1)
   const department = PatchActivityTest(user, activities[pickedDepartmentIndex], config, tags)
   if (!department) {
     fail("test stop on patch Department feature, please check the logs")
