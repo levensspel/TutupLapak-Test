@@ -47,12 +47,12 @@ export function GetProfileTest(user, config, tags) {
       ["should return 200"]: (v) => v.status === 200,
       ["should have email and equal"]: (v) => isEqual(v, "email", user.email),
       ["should have name"]: (v) => isExists(v, "name", ["string", null]),
-      ["should have imageUri"]: (v) => isExists(v, "name", ["string", null]),
-      ["should have height"]: (v) => isExists(v, "name", ["number", null]),
-      ["should have weight"]: (v) => isExists(v, "name", ["number", null]),
-      ["should have heightUnit"]: (v) => isExists(v, "name", ["string", null]),
-      ["should have weightUnit"]: (v) => isExists(v, "name", ["string", null]),
-      ["should have preference"]: (v) => isExists(v, "name", ["string", null]),
+      ["should have imageUri"]: (v) => isExists(v, "imageUri", ["string", null]),
+      ["should have height"]: (v) => isExists(v, "height", ["number", null]),
+      ["should have weight"]: (v) => isExists(v, "weight", ["number", null]),
+      ["should have heightUnit"]: (v) => isExists(v, "heightUnit", ["string", null]),
+      ["should have weightUnit"]: (v) => isExists(v, "weightUnit", ["string", null]),
+      ["should have preference"]: (v) => isExists(v, "preference", ["string", null]),
     },
     config, tags,);
   if (res.isSuccess) {
