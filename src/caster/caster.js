@@ -84,7 +84,10 @@ export function isActivity(value) {
 
   // ActivityType enum check
   if (!('activityType' in obj) || typeof obj.activityType !== 'string' ||
-    !Object.values(ActivityType).includes(/** @type {any} */(obj.activityType))) {
+    !["Walking", "Yoga", "Stretching", "Cycling",
+      "Swimming", "Dancing", "Hiking", "Running",
+      "HIIT", "JumpRope",
+    ].includes(/** @type {any} */(obj.activityType))) {
     return false;
   }
 
