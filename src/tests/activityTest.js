@@ -186,7 +186,10 @@ export function PostActivityTest(user, config, tags) {
     HIIT: 10,
     JumpRope: 10
   };
-  const activities = Object.keys(activitiesCalories)
+  const activities = ["Walking", "Yoga", "Stretching", "Cycling",
+    "Swimming", "Dancing", "Hiking", "Running",
+    "HIIT", "JumpRope",
+  ]
   const duration = generateRandomNumber(0, 100)
   const choosenActivity = activities[generateRandomNumber(0, activities.length - 1)]
   const calorieBurned = duration * activitiesCalories[choosenActivity]
@@ -299,7 +302,10 @@ export function PatchActivityTest(user, activity, config, tags) {
     HIIT: 10,
     JumpRope: 10
   };
-  const activities = Object.keys(activitiesCalories)
+  const activities = ["Walking", "Yoga", "Stretching", "Cycling",
+    "Swimming", "Dancing", "Hiking", "Running",
+    "HIIT", "JumpRope",
+  ]
   const duration = generateRandomNumber(0, 100)
   const choosenActivity = activities[generateRandomNumber(0, activities.length - 1)]
   const calorieBurned = duration * activitiesCalories[choosenActivity]
