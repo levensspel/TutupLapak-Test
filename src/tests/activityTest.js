@@ -3,6 +3,23 @@ import { isEqual, isEqualWith, isEveryItemDifferent, isExists, isTotalDataInRang
 import { combine, generateRandomName, generateRandomNumber, generateTestObjects } from "../helper/generator.js";
 import { testDeleteAssert, testGetAssert, testPatchJsonAssert, testPostJsonAssert } from "../helper/request.js";
 
+/** @type {Object<string, number>} */
+const activitiesCalories = {
+  Walking: 4,
+  Yoga: 4,
+  Stretching: 4,
+  Cycling: 8,
+  Swimming: 8,
+  Dancing: 8,
+  Hiking: 10,
+  Running: 10,
+  HIIT: 10,
+  JumpRope: 10
+};
+const activities = ["Walking", "Yoga", "Stretching", "Cycling",
+  "Swimming", "Dancing", "Hiking", "Running",
+  "HIIT", "JumpRope",
+]
 /**
  * @param {User} user
  * @param {import("../types/config.d.ts").Config} config
@@ -173,23 +190,6 @@ export function PostActivityTest(user, config, tags) {
   const route = config.baseUrl + "/v1/activity";
   const assertHandler = testPostJsonAssert;
 
-  /** @type {Object<string, number>} */
-  const activitiesCalories = {
-    Walking: 4,
-    Yoga: 4,
-    Stretching: 4,
-    Cycling: 8,
-    Swimming: 8,
-    Dancing: 8,
-    Hiking: 10,
-    Running: 10,
-    HIIT: 10,
-    JumpRope: 10
-  };
-  const activities = ["Walking", "Yoga", "Stretching", "Cycling",
-    "Swimming", "Dancing", "Hiking", "Running",
-    "HIIT", "JumpRope",
-  ]
   const duration = generateRandomNumber(0, 100)
   const choosenActivity = activities[generateRandomNumber(0, activities.length - 1)]
   const calorieBurned = duration * activitiesCalories[choosenActivity]
@@ -289,23 +289,6 @@ export function PatchActivityTest(user, activity, config, tags) {
   const route = routeWithoutId + `/${activity.activityId}`;
   const assertHandler = testPatchJsonAssert;
 
-  /** @type {Object<string, number>} */
-  const activitiesCalories = {
-    Walking: 4,
-    Yoga: 4,
-    Stretching: 4,
-    Cycling: 8,
-    Swimming: 8,
-    Dancing: 8,
-    Hiking: 10,
-    Running: 10,
-    HIIT: 10,
-    JumpRope: 10
-  };
-  const activities = ["Walking", "Yoga", "Stretching", "Cycling",
-    "Swimming", "Dancing", "Hiking", "Running",
-    "HIIT", "JumpRope",
-  ]
   const duration = generateRandomNumber(0, 100)
   const choosenActivity = activities[generateRandomNumber(0, activities.length - 1)]
   const calorieBurned = duration * activitiesCalories[choosenActivity]
