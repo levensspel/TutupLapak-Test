@@ -138,21 +138,21 @@ export function GetActivityTest(user, config, tags) {
     { doneAtFrom: oneHourAgo },
     positiveHeader,
     combine(baseChecks, {
-      ["should have doneAt that is more than query"]: (v) => isEqualWith(v, "[]doneAt", (a) => a.every(b => b && beforeTime > new Date(b.toString()))),
+      ["should have doneAt that is more than query"]: (v) => isEqualWith(v, "[]doneAt", (a) => a.every(b => b && beforeTime < new Date(b.toString()))),
     }),
     config, tags,);
   assertHandler("valid payload with doneAtFrom", featureName, route,
     { doneAtTo: oneHourAfter },
     positiveHeader,
     combine(baseChecks, {
-      ["should have doneAt that is less than query"]: (v) => isEqualWith(v, "[]doneAt", (a) => a.every(b => b && afterTime < new Date(b.toString()))),
+      ["should have doneAt that is less than query"]: (v) => isEqualWith(v, "[]doneAt", (a) => a.every(b => b && afterTime > new Date(b.toString()))),
     }),
     config, tags,);
   assertHandler("valid payload with doneAtFrom & doneAtTo", featureName, route,
     { doneAtTo: oneHourAfter, doneAtFrom: oneHourAgo },
     positiveHeader,
     combine(baseChecks, {
-      ["should have doneAt in range"]: (v) => isEqualWith(v, "[]doneAt", (a) => a.every(b => b && beforeTime > new Date(b.toString()) && afterTime < new Date(b.toString()))),
+      ["should have doneAt in range"]: (v) => isEqualWith(v, "[]doneAt", (a) => a.every(b => b && beforeTime < new Date(b.toString()) && afterTime > new Date(b.toString()))),
     }),
     config, tags,);
   assertHandler("valid payload with caloriesBurnedMin", featureName, route,
