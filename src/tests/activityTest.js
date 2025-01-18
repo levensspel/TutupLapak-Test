@@ -162,20 +162,6 @@ export function GetActivityTest(user, config, tags) {
 
   return activities.every(a => isActivity(a)) ? activities : []
 }
-/** @type {Object<string, number>} */
-const activitiesCalories = {
-  Walking: 4,
-  Yoga: 4,
-  Stretching: 4,
-  Cycling: 8,
-  Swimming: 8,
-  Dancing: 8,
-  Hiking: 10,
-  Running: 10,
-  HIIT: 10,
-  JumpRope: 10
-};
-const activities = Object.keys(activitiesCalories)
 /**
  * @param {User} user
  * @param {import("../types/config.d.ts").Config} config
@@ -187,13 +173,27 @@ export function PostActivityTest(user, config, tags) {
   const route = config.baseUrl + "/v1/activity";
   const assertHandler = testPostJsonAssert;
 
+  /** @type {Object<string, number>} */
+  const activitiesCalories = {
+    Walking: 4,
+    Yoga: 4,
+    Stretching: 4,
+    Cycling: 8,
+    Swimming: 8,
+    Dancing: 8,
+    Hiking: 10,
+    Running: 10,
+    HIIT: 10,
+    JumpRope: 10
+  };
+  const activities = Object.keys(activitiesCalories)
   const duration = generateRandomNumber(0, 100)
   const choosenActivity = activities[generateRandomNumber(0, activities.length)]
   const calorieBurned = duration * activitiesCalories[choosenActivity]
   const positivePayload = {
     activityType: choosenActivity,
     doneAt: new Date().toISOString(),
-    durationInMinute: duration,
+    durationInMinutes: duration,
   };
   const positiveHeader = {
     Authorization: `Bearer ${user.token}`,
@@ -286,13 +286,27 @@ export function PatchActivityTest(user, activity, config, tags) {
   const route = routeWithoutId + `/${activity.activityId}`;
   const assertHandler = testPatchJsonAssert;
 
+  /** @type {Object<string, number>} */
+  const activitiesCalories = {
+    Walking: 4,
+    Yoga: 4,
+    Stretching: 4,
+    Cycling: 8,
+    Swimming: 8,
+    Dancing: 8,
+    Hiking: 10,
+    Running: 10,
+    HIIT: 10,
+    JumpRope: 10
+  };
+  const activities = Object.keys(activitiesCalories)
   const duration = generateRandomNumber(0, 100)
   const choosenActivity = activities[generateRandomNumber(0, activities.length)]
   const calorieBurned = duration * activitiesCalories[choosenActivity]
   const positivePayload = {
     activityType: choosenActivity,
     doneAt: new Date().toISOString(),
-    durationInMinute: duration,
+    durationInMinutes: duration,
   };
   const positiveHeader = {
     Authorization: `Bearer ${user.token}`,
@@ -366,7 +380,7 @@ export function PatchActivityTest(user, activity, config, tags) {
       ["should have activityId"]: (v) => isEqual(v, "activityId", activity.activityId),
       ["should have activityType"]: (v) => isEqual(v, "activityType", positivePayload.activityType),
       ["should have doneAt"]: (v) => isEqual(v, "doneAt", positivePayload.doneAt),
-      ["should have durationInMinutes"]: (v) => isEqual(v, "durationInMinutes", positivePayload.durationInMinute),
+      ["should have durationInMinutes"]: (v) => isEqual(v, "durationInMinutes", positivePayload.durationInMinutes),
       ["should have caloriesBurned"]: (v) => isEqual(v, "caloriesBurned", calorieBurned),
       ["should have createdAt"]: (v) => isEqualWith(v, "createdAt", (a) => a.every(b => b && isValidDate(b.toString()))),
       ["should have updatedAt"]: (v) => isEqualWith(v, "updatedAt", (a) => a.every(b => b && isValidDate(b.toString()))),
