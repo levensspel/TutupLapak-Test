@@ -75,8 +75,8 @@ export function doGetActivity(config, user, totalData) {
       if (Array.isArray(jsonResult)) {
         activities.push(...jsonResult)
       }
-      console.log("pushed activityes", activities)
     }
+    console.log("pushed activityes", pagResult.isSuccess, pagResult.res.json())
     withProbability(0.2, () => {
       const pagOffResult = assertHandler("valid payload with pagination offset", featureName, route,
         { limit: totalData, offset: totalData * 2 },
