@@ -112,29 +112,29 @@ export default async function() {
     })
   })
   //=== activity test ===
-  let departments = doGetActivity(config, user, generateRandomNumber(5, 10))
-  const department = doPostActivity(config, user,)
-  if (department) {
-    departments.push(department)
+  let activities = doGetActivity(config, user, generateRandomNumber(5, 10))
+  const activity = doPostActivity(config, user,)
+  if (activity) {
+    activities.push(activity)
   }
   withProbability(0.2, () => {
     const department = doPostActivity(config, user,)
     if (department) {
-      departments.push(department)
+      activities.push(department)
     }
   })
 
   withProbability(0.2, () => {
-    const selectedIndex = generateRandomNumber(0, departments.length)
-    const department = doPatchActivity(config, user, departments[selectedIndex])
+    const selectedIndex = generateRandomNumber(0, activities.length)
+    const department = doPatchActivity(config, user, activities[selectedIndex])
     if (department) {
-      departments[selectedIndex] = department
+      activities[selectedIndex] = department
     }
   })
   withProbability(0.1, () => {
-    const selectedIndex = generateRandomNumber(0, departments.length)
-    doDeleteTest(config, user, departments[selectedIndex])
-    departments.splice(selectedIndex, 1)
+    const selectedIndex = generateRandomNumber(0, activities.length)
+    doDeleteTest(config, user, activities[selectedIndex])
+    activities.splice(selectedIndex, 1)
   })
 
 }
