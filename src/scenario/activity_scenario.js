@@ -150,7 +150,7 @@ export function doPostActivity(config, user) {
     [], config, {});
   withProbability(0.2, () => {
     const payload = combine(positivePayload, {
-      durationInMinutes: 1000000
+      durationInMinutes: -1
     })
     assertHandler("invalid payload", featureName, route, payload, positiveHeader,
       {
@@ -196,7 +196,7 @@ export function doPatchActivity(config, user, activity) {
 
   withProbability(0.2, () => {
     const payload = combine(positivePayload, {
-      durationInMinutes: 1000000
+      durationInMinutes: -1
     })
     assertHandler("invalid payload", featureName, route, payload, positiveHeader,
       {
