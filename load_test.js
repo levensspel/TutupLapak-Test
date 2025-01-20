@@ -127,7 +127,7 @@ export default async function() {
   withProbability(0.2, () => {
     const selectedIndex = generateRandomNumber(0, activities.length)
     if (!activities[selectedIndex]) {
-      console.log("non exist", activities[selectedIndex])
+      console.log("non exist", activities[selectedIndex], activities)
     }
     const activity = doPatchActivity(config, user, activities[selectedIndex])
     if (activity) {
@@ -137,7 +137,7 @@ export default async function() {
   withProbability(0.1, () => {
     const selectedIndex = generateRandomNumber(0, activities.length)
     if (!activities[selectedIndex]) {
-      console.log("non exist", activities[selectedIndex])
+      console.log("non exist", activities[selectedIndex], activities)
     }
     doDeleteTest(config, user, activities[selectedIndex])
     activities.splice(selectedIndex, 1)
