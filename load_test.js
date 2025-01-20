@@ -125,7 +125,7 @@ export default async function() {
   })
 
   withProbability(0.2, () => {
-    const selectedIndex = generateRandomNumber(0, activities.length)
+    const selectedIndex = generateRandomNumber(0, activities.length - 1)
     if (!activities[selectedIndex]) {
       console.log("non exist", activities[selectedIndex], activities)
     }
@@ -135,7 +135,7 @@ export default async function() {
     }
   })
   withProbability(0.1, () => {
-    const selectedIndex = generateRandomNumber(0, activities.length)
+    const selectedIndex = generateRandomNumber(0, activities.length - 1)
     if (!activities[selectedIndex]) {
       console.log("non exist", activities[selectedIndex], activities)
     }
