@@ -16,7 +16,7 @@ const activitiesCalories = {
   HIIT: 10,
   JumpRope: 10
 };
-const activities = ["Walking", "Yoga", "Stretching", "Cycling",
+const activityTypes = ["Walking", "Yoga", "Stretching", "Cycling",
   "Swimming", "Dancing", "Hiking", "Running",
   "HIIT", "JumpRope",
 ]
@@ -45,16 +45,22 @@ export function doGetActivity(config, user, totalData) {
     ["should have durationInMinutes"]: (v) => isExists(v, "[]durationInMinutes", ["number"]),
     ["should have caloriesBurned"]: (v) => isExists(v, "[]caloriesBurned", ["number"]),
   }
-
-  assertHandler("valid payload with pagination", featureName, route,
+  const activities = []
+  const result = assertHandler("valid payload with pagination", featureName, route,
     { limit: totalData, offset: 0 },
     positiveHeader,
     combine(baseChecks, {
       ['should have the correct total data based on pagination']: (v) => isTotalDataInRange(v, '[]', 1, 2),
     }),
     config, {});
+  if (result.isSuccess) {
+    const jsonResult = result.res.json()
+    if (Array.isArray(jsonResult)) {
+      activities.push(...jsonResult)
+    }
+  }
   withProbability(0.2, () => {
-    assertHandler("valid payload with pagination offset", featureName, route,
+    const pagResult = assertHandler("valid payload with pagination offset", featureName, route,
       { limit: totalData, offset: totalData },
       positiveHeader,
       combine(baseChecks, {
@@ -63,9 +69,14 @@ export function doGetActivity(config, user, totalData) {
       config,
       {},
     );
-
+    if (pagResult.isSuccess) {
+      const jsonResult = pagResult.res.json()
+      if (Array.isArray(jsonResult)) {
+        activities.push(...jsonResult)
+      }
+    }
     withProbability(0.2, () => {
-      assertHandler("valid payload with pagination offset", featureName, route,
+      const pagOffResult = assertHandler("valid payload with pagination offset", featureName, route,
         { limit: totalData, offset: totalData * 2 },
         positiveHeader,
         combine(baseChecks, {
@@ -75,6 +86,12 @@ export function doGetActivity(config, user, totalData) {
         {},
       );
 
+      if (pagOffResult.isSuccess) {
+        const jsonResult = pagOffResult.res.json()
+        if (Array.isArray(jsonResult)) {
+          activities.push(...jsonResult)
+        }
+      }
       const beforeTime = new Date()
       const currentHour = beforeTime.getHours()
       beforeTime.setHours(currentHour - 1)
@@ -93,8 +110,6 @@ export function doGetActivity(config, user, totalData) {
     })
   })
 
-
-  console.log(activities)
   return activities.every(a => isActivity(a)) ? activities : []
 }
 
@@ -109,7 +124,7 @@ export function doPostActivity(config, user) {
   const assertHandler = testPostJsonAssert;
 
   const duration = generateRandomNumber(2, 100)
-  const choosenActivity = activities[generateRandomNumber(0, activities.length - 1)]
+  const choosenActivity = activityTypes[generateRandomNumber(0, activityTypes.length - 1)]
   const calorieBurned = duration * activitiesCalories[choosenActivity]
   const positivePayload = {
     activityType: choosenActivity,
@@ -168,7 +183,7 @@ export function doPatchActivity(config, user, activity) {
   const assertHandler = testPatchJsonAssert;
 
   const duration = generateRandomNumber(1, 100)
-  const choosenActivity = activities[generateRandomNumber(0, activities.length - 1)]
+  const choosenActivity = activityTypes[generateRandomNumber(0, activityTypes.length - 1)]
   const calorieBurned = duration * activitiesCalories[choosenActivity]
   const positivePayload = {
     activityType: choosenActivity,
