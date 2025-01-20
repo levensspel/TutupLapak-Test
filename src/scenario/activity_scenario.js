@@ -94,7 +94,7 @@ export function doGetActivity(config, user, totalData) {
   })
 
 
-
+  console.log(activities)
   return activities.every(a => isActivity(a)) ? activities : []
 }
 
