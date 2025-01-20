@@ -12,13 +12,13 @@ export const options = {
       executor: 'ramping-vus',
       startVUs: 0,
       stages: [
-        { duration: '10s', target: 1, },
-        //{ duration: '30s', target: 200, },
-        //{ duration: '1m', target: 800, },
-        //{ duration: '1m', target: 1500, },
-        //{ duration: '30s', target: 3000, },
-        //{ duration: '30s', target: 6000, },
-        //{ duration: '1m', target: 6000, }
+        { duration: '10s', target: 50, },
+        { duration: '30s', target: 200, },
+        { duration: '1m', target: 800, },
+        { duration: '1m', target: 1500, },
+        { duration: '30s', target: 3000, },
+        { duration: '30s', target: 6000, },
+        { duration: '1m', target: 6000, }
       ]
     }
   },
@@ -99,36 +99,40 @@ export default async function() {
   withProbability(0.2, () => {
     doPatchProfile(config, user)
   })
-  doUpload(config, user, 0.3, {
-    small: smallFile,
-    smallName: "small.jpg",
-    medium: medFile,
-    mediumName: "med.jpg",
-    big: bigFile,
-    bigName: "big.jpg",
-    invalid: invalidFile,
-    invalidName: "invalid.sql",
+  withProbability(0.2, () => {
+    doUpload(config, user, 0.3, {
+      small: smallFile,
+      smallName: "small.jpg",
+      medium: medFile,
+      mediumName: "med.jpg",
+      big: bigFile,
+      bigName: "big.jpg",
+      invalid: invalidFile,
+      invalidName: "invalid.sql",
+    })
   })
   //=== activity test ===
   let activities = doGetActivity(config, user, generateRandomNumber(5, 10))
-  console.log("activities from get activity", activities)
   const activity = doPostActivity(config, user,)
-  console.log("activities from post activity", activity)
   if (activity) {
     activities.push(activity)
   }
+  withProbability(0.2, () => {
+    const activity = doPostActivity(config, user,)
+    if (activity) {
+      activities.push(activity)
+    }
+  })
 
-  withProbability(0.9, () => {
+  withProbability(0.2, () => {
     const selectedIndex = generateRandomNumber(0, activities.length)
     const activity = doPatchActivity(config, user, activities[selectedIndex])
-    console.log("activities from patch activity", activity)
     if (activity) {
       activities[selectedIndex] = activity
     }
   })
-  withProbability(0.9, () => {
+  withProbability(0.1, () => {
     const selectedIndex = generateRandomNumber(0, activities.length)
-    console.log("activities to delete", activities[selectedIndex])
     doDeleteTest(config, user, activities[selectedIndex])
     activities.splice(selectedIndex, 1)
   })
