@@ -50,7 +50,7 @@ export function doGetActivity(config, user, totalData) {
     { limit: totalData, offset: 0 },
     positiveHeader,
     combine(baseChecks, {
-      ['should have the correct total data based on pagination']: (v) => isTotalDataInRange(v, '[]', 1, 2),
+      ['should have the correct total data based on pagination']: (v) => isTotalDataInRange(v, '[]', 1, totalData),
     }),
     config, {});
   if (result.isSuccess) {
@@ -65,7 +65,7 @@ export function doGetActivity(config, user, totalData) {
       { limit: totalData, offset: totalData },
       positiveHeader,
       combine(baseChecks, {
-        ['should have the correct total data based on pagination']: (v) => isTotalDataInRange(v, '[]', 1, 2),
+        ['should have the correct total data based on pagination']: (v) => isTotalDataInRange(v, '[]', 1, totalData),
       }),
       config,
       {},
@@ -82,7 +82,7 @@ export function doGetActivity(config, user, totalData) {
         { limit: totalData, offset: totalData * 2 },
         positiveHeader,
         combine(baseChecks, {
-          ['should have the correct total data based on pagination']: (v) => isTotalDataInRange(v, '[]', 1, 2),
+          ['should have the correct total data based on pagination']: (v) => isTotalDataInRange(v, '[]', 1, totalData),
         }),
         config,
         {},
