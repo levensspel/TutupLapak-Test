@@ -209,7 +209,7 @@ export function doPatchActivity(config, user, activity) {
       ["should return 200"]: (v) => v.status === 200,
       ["should have activityId"]: (v) => isEqual(v, "activityId", activity.activityId),
       ["should have activityType"]: (v) => isEqual(v, "activityType", positivePayload.activityType),
-      ["should have doneAt"]: (v) => isEqual(v, "doneAt", positivePayload.doneAt),
+      ["should have doneAt"]: (v) => isEqualWith(v, "doneAt", (a) => a.every(b => b && new Date(b.toString()).toISOString() == positivePayload.doneAt)),
       ["should have durationInMinutes"]: (v) => isEqual(v, "durationInMinutes", positivePayload.durationInMinutes),
       ["should have caloriesBurned"]: (v) => isEqual(v, "caloriesBurned", calorieBurned),
       ["should have createdAt"]: (v) => isEqualWith(v, "createdAt", (a) => a.every(b => b && isValidDate(b.toString()))),
