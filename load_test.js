@@ -13,12 +13,12 @@ export const options = {
       startVUs: 0,
       stages: [
         { duration: '10s', target: 50, },
-        { duration: '30s', target: 200, },
-        { duration: '1m', target: 800, },
-        { duration: '1m', target: 1500, },
-        { duration: '30s', target: 3000, },
-        { duration: '30s', target: 6000, },
-        { duration: '1m', target: 6000, }
+        //{ duration: '30s', target: 200, },
+        //{ duration: '1m', target: 800, },
+        //{ duration: '1m', target: 1500, },
+        //{ duration: '30s', target: 3000, },
+        //{ duration: '30s', target: 6000, },
+        //{ duration: '1m', target: 6000, }
       ]
     }
   },
@@ -126,7 +126,7 @@ export default async function() {
 
   withProbability(0.2, () => {
     const selectedIndex = generateRandomNumber(0, activities.length)
-    if (activities[selectedIndex].activityId) {
+    if (!activities[selectedIndex].activityId) {
       console.log("non exist", activities[selectedIndex])
     }
     const activity = doPatchActivity(config, user, activities[selectedIndex])
@@ -136,7 +136,7 @@ export default async function() {
   })
   withProbability(0.1, () => {
     const selectedIndex = generateRandomNumber(0, activities.length)
-    if (activities[selectedIndex].activityId) {
+    if (!activities[selectedIndex].activityId) {
       console.log("non exist", activities[selectedIndex])
     }
     doDeleteTest(config, user, activities[selectedIndex])
