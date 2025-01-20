@@ -113,36 +113,35 @@ export default async function() {
   })
   //=== activity test ===
   let activities = doGetActivity(config, user, generateRandomNumber(5, 10))
-  console.log("activities", activities)
-  //const activity = doPostActivity(config, user,)
-  //if (activity) {
-  //  activities.push(activity)
-  //}
-  //withProbability(0.2, () => {
-  //  const activity = doPostActivity(config, user,)
-  //  if (activity) {
-  //    activities.push(activity)
-  //  }
-  //})
-  //
-  //withProbability(0.2, () => {
-  //  const selectedIndex = generateRandomNumber(0, activities.length)
-  //  if (!activities[selectedIndex]) {
-  //    console.log("non exist", activities[selectedIndex])
-  //  }
-  //  const activity = doPatchActivity(config, user, activities[selectedIndex])
-  //  if (activity) {
-  //    activities[selectedIndex] = activity
-  //  }
-  //})
-  //withProbability(0.1, () => {
-  //  const selectedIndex = generateRandomNumber(0, activities.length)
-  //  if (!activities[selectedIndex]) {
-  //    console.log("non exist", activities[selectedIndex])
-  //  }
-  //  doDeleteTest(config, user, activities[selectedIndex])
-  //  activities.splice(selectedIndex, 1)
-  //})
+  const activity = doPostActivity(config, user,)
+  if (activity) {
+    activities.push(activity)
+  }
+  withProbability(0.2, () => {
+    const activity = doPostActivity(config, user,)
+    if (activity) {
+      activities.push(activity)
+    }
+  })
+
+  withProbability(0.2, () => {
+    const selectedIndex = generateRandomNumber(0, activities.length)
+    if (!activities[selectedIndex]) {
+      console.log("non exist", activities[selectedIndex])
+    }
+    const activity = doPatchActivity(config, user, activities[selectedIndex])
+    if (activity) {
+      activities[selectedIndex] = activity
+    }
+  })
+  withProbability(0.1, () => {
+    const selectedIndex = generateRandomNumber(0, activities.length)
+    if (!activities[selectedIndex]) {
+      console.log("non exist", activities[selectedIndex])
+    }
+    doDeleteTest(config, user, activities[selectedIndex])
+    activities.splice(selectedIndex, 1)
+  })
 
 }
 

@@ -58,7 +58,6 @@ export function doGetActivity(config, user, totalData) {
     if (Array.isArray(jsonResult)) {
       activities.push(...jsonResult)
     }
-    console.log("pushed activityes", activities)
   }
   withProbability(0.2, () => {
     const pagResult = assertHandler("valid payload with pagination offset", featureName, route,
@@ -76,7 +75,6 @@ export function doGetActivity(config, user, totalData) {
         activities.push(...jsonResult)
       }
     }
-    console.log("pushed activityes", pagResult.isSuccess, pagResult.res.json())
     withProbability(0.2, () => {
       const pagOffResult = assertHandler("valid payload with pagination offset", featureName, route,
         { limit: totalData, offset: totalData * 2 },
@@ -93,7 +91,6 @@ export function doGetActivity(config, user, totalData) {
         if (Array.isArray(jsonResult)) {
           activities.push(...jsonResult)
         }
-        console.log("pushed activityes", activities)
       }
       const beforeTime = new Date()
       const currentHour = beforeTime.getHours()
