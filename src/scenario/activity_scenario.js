@@ -217,7 +217,7 @@ export function doPatchActivity(config, user, activity) {
     },
     [], config, {}
   );
-  console.log(res.isSuccess, res.res.body, res.res.status, positivePayload, activity.activityId)
+  console.log(res.isSuccess, res.res.body, res.res.status, positivePayload, activity.activityId, calorieBurned)
   if (res.isSuccess) {
     try {
       const jsonResult = res.res.json();
