@@ -170,7 +170,7 @@ export function doPostActivity(config, user) {
       console.log(featureName + " | failed to parse json", e)
     }
   }
-  console.log(featureName + " | is not successs, response_code:", res.res.status, "payload", res.res.json())
+  console.log(featureName + " | is not successs, response_code:", res.res.status, "payload", res.res.body)
 }
 
 /**
