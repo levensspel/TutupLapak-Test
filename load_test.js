@@ -132,19 +132,21 @@ export default async function() {
     const selectedIndex = generateRandomNumber(0, activities.length - 1)
     if (!activities[selectedIndex]) {
       console.log("non exist", activities[selectedIndex], activities)
-    }
-    const activity = doPatchActivity(config, user, activities[selectedIndex])
-    if (activity) {
-      activities[selectedIndex] = activity
+    } else {
+      const activity = doPatchActivity(config, user, activities[selectedIndex])
+      if (activity) {
+        activities[selectedIndex] = activity
+      }
     }
   })
   withProbability(0.1, () => {
     const selectedIndex = generateRandomNumber(0, activities.length - 1)
     if (!activities[selectedIndex]) {
       console.log("non exist", activities[selectedIndex], activities)
+    } else {
+      doDeleteTest(config, user, activities[selectedIndex])
+      activities.splice(selectedIndex, 1)
     }
-    doDeleteTest(config, user, activities[selectedIndex])
-    activities.splice(selectedIndex, 1)
   })
 
 }
