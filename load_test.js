@@ -1,3 +1,4 @@
+import http from 'k6/http';
 import { SharedArray } from 'k6/data';
 import { Client } from 'k6/experimental/redis';
 import { combine, generateRandomEmail, generateRandomNumber, generateRandomPassword, withProbability } from './src/helper/generator.js';
@@ -30,6 +31,9 @@ export const options = {
     }],
   }
 };
+http.setResponseCallback(
+  http.expectedStatuses(404, 401, 400, 409, { min: 200, max: 204 })
+);
 const users = new SharedArray('user', function() {
   /** @type {User[]} */
   const res = []
