@@ -163,6 +163,8 @@ export function doPostActivity(config, user) {
       const jsonResult = res.res.json();
       if (jsonResult && isActivity(jsonResult)) {
         return jsonResult
+      } else {
+        console.log(featureName + " | json is not activity", jsonResult)
       }
     } catch (e) {
       console.log(featureName + " | failed to parse json", e)
