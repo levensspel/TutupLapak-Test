@@ -1,10 +1,6 @@
 import { fail } from 'k6';
-import { generateRandomNumber } from "./src/helper/generator.js";
-import { DeleteActivityTest, GetActivityTest, PatchActivityTest, PostActivityTest } from "./src/tests/activityTest.js";
-import { UploadFileTest } from "./src/tests/fileTest.js";
 import { LoginTest } from "./src/tests/loginTest.js";
-import { GetProfileTest, PatchProfileTest } from "./src/tests/profileTest.js";
-import { RegisterTest } from "./src/tests/registerTest.js";
+import { RegisterTest } from "./src/tests/registerEmailTest.js";
 
 export const options = {
   vus: 1,
@@ -38,40 +34,5 @@ export default function() {
   }
   const user = users[0]
   LoginTest(user, config, tags)
-
-  // ===== UPLOAD TEST =====
-  UploadFileTest(user, {
-    small: smallFile,
-    smallName: "small.jpg",
-    medium: medFile,
-    mediumName: "med.jpg",
-    big: bigFile,
-    bigName: "big.jpg",
-    invalid: invalidFile,
-    invalidName: "invalid.sql",
-  }, config, tags)
-
-  // ===== PROFILE TEST =====
-  GetProfileTest(user, config, tags)
-  PatchProfileTest(user, config, tags)
-
-  // ===== DEPARTMENT TEST =====
-  /** @type {Activity[]} */
-  let activities = []
-  for (let index = 0; index < 50; index++) {
-    let department = PostActivityTest(user, config, tags)
-    console.log(`Department Post test ${index} result:`, department);
-    if (!department)
-      fail(`test stop on Post Department feature loop ${index}, please check the logs`)
-    activities.push(department)
-  }
-  GetActivityTest(user, config, tags)
-  let pickedDepartmentIndex = generateRandomNumber(0, activities.length - 1)
-  const department = PatchActivityTest(user, activities[pickedDepartmentIndex], config, tags)
-  if (!department) {
-    fail("test stop on patch Department feature, please check the logs")
-  }
-  DeleteActivityTest(user, department, config, tags)
-  activities.splice(pickedDepartmentIndex, 1)
 }
 

@@ -9,13 +9,13 @@ import {
 import { testPostJsonAssert } from "../helper/request.js";
 
 /**
- * @param {import("../types/config.d.ts").Config} config
+ * @param {import("../types/config").Config} config
  * @param {{[name: string]: string}} tags
  * @returns {User | undefined}
  */
 export function RegisterTest(config, tags) {
   const featureName = "Register";
-  const route = config.baseUrl + "/v1/register";
+  const route = config.baseUrl + "/v1/register/email";
   const assertHandler = testPostJsonAssert;
 
   const positivePayload = {

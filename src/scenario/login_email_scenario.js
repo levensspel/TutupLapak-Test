@@ -6,13 +6,13 @@ import {
 import { testPostJsonAssert } from "../helper/request.js";
 
 /**
- * @param {import("../types/config.d.ts").Config} config
+ * @param {import("../types/config").Config} config
  * @param {User} user
  * @returns {User | undefined}
  */
 export function doLogin(config, user) {
   const featureName = "Login";
-  const route = config.baseUrl + "/v1/login";
+  const route = config.baseUrl + "/v1/login/email";
   const assertHandler = testPostJsonAssert;
 
   const positivePayload = {

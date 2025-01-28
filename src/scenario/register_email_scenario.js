@@ -5,12 +5,12 @@ import { isUser } from "../caster/caster.js"
 
 /**
  * @param {User} user to register
- * @param {import("../types/config.d.ts").Config} config
+ * @param {import("../types/config").Config} config
  * @returns {{isCreated:boolean, user: User | null}}
  */
 export function doRegister(config, user) {
   const featureName = "Register";
-  const route = config.baseUrl + "/v1/register";
+  const route = config.baseUrl + "/v1/register/email";
 
   const positivePayload = {
     email: user.email,

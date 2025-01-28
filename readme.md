@@ -1,16 +1,9 @@
-# FitByte Test Cases!
-## ProjectSprint Batch 3 Project 2
+# TutupLapak Test Cases!
+## ProjectSprint Batch 3 Project 3
 
 ### Status
-- ✅ Register 
-- ✅ Login 
-- ✅ Get Profile 
-- ✅ File Upload
-- ✅ Patch Profile 
-- ✅ Post Activity 
-- ✅ Get Activity 
-- ✅ Patch Activity 
-- ✅ Delete Activity 
+- ✅ Register Email
+- ✅ Login Email
 
 ### Prerequisites
 - [ k6 ](https://k6.io/docs/get-started/installation/)
@@ -22,11 +15,16 @@
     BASE_URL=http://localhost:8080 make pull-test
     ```
     ⚠️ Adjust the `BASE_URL` value to your backend path
-### How to load test
-- make sure that you have redis installed and exposed in port `6379`
+### How to load test (Success & Failed Cases)
 - run
     ```bash
     BASE_URL=http://localhost:8080 k6 run load_test.js
+    ```
+    ⚠️ Adjust the `BASE_URL` value to your backend path
+### How to load test (Only Success Cases - to see max throughput)
+- run
+    ```bash
+    BASE_URL=http://localhost:8080 k6 run load_test_success_cases.js
     ```
     ⚠️ Adjust the `BASE_URL` value to your backend path
 ### Cookbook 🍳
