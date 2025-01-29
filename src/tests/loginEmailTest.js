@@ -8,14 +8,14 @@ import {
 import { testPostJsonAssert } from "../helper/request.js";
 
 /**
- * @param {import("../types/config.d.ts").Config} config
+ * @param {import("../types/config").Config} config
  * @param {{[name: string]: string}} tags
  * @param {User} user
  * @returns {User | undefined}
  */
-export function LoginTest(user, config, tags) {
+export function LoginEmailTest(user, config, tags) {
   const featureName = "Login";
-  const route = config.baseUrl + "/v1/login";
+  const route = config.baseUrl + "/v1/login/email";
   const assertHandler = testPostJsonAssert;
 
   const positivePayload = {

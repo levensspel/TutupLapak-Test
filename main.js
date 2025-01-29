@@ -1,5 +1,5 @@
 import { fail } from 'k6';
-import { LoginTest } from "./src/tests/loginTest.js";
+import { LoginEmailTest } from "./src/tests/loginEmailTest.js";
 import { RegisterTest } from "./src/tests/registerEmailTest.js";
 
 export const options = {
@@ -33,6 +33,6 @@ export default function() {
     users.push(user)
   }
   const user = users[0]
-  LoginTest(user, config, tags)
+  LoginEmailTest(user, config, tags)
 }
 
