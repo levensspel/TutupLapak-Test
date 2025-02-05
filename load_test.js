@@ -3,6 +3,7 @@ import { SharedArray } from 'k6/data';
 import { generateRandomEmail, generateRandomPassword } from './src/helper/generator.js';
 import { doRegister } from './src/scenario/register_email_scenario.js'
 import { doLogin } from './src/scenario/login_email_scenario.js'
+import { doGetProfile } from './src/scenario/get_profile.js'
 export const options = {
   scenarios: {
     ramping_load: {
@@ -63,4 +64,8 @@ export default async function() {
   if (!usr.user) {
     return;
   }
+  const user = usr.user
+
+  //=== profile & file test ===
+  doGetProfile(config, user)
 }
