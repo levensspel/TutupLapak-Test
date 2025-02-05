@@ -4,6 +4,8 @@
 ### Status
 - ✅ Register Email
 - ✅ Login Email
+- ✅ Get Single User Profile
+- ✅ Get Many User Profiles (Success-Case Load Testing)
 
 ### Prerequisites
 - [ k6 ](https://k6.io/docs/get-started/installation/)
